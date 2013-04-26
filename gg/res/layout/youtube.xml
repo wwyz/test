@@ -16,13 +16,13 @@
 
     </MediaController>
 
-    <GridView
-        android:id="@+id/gridView1"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mediaController1"
-        android:layout_centerHorizontal="true"
-        android:numColumns="3" >
-    </GridView>
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/mediaController1" >
+
+    </ListView>
 
 </RelativeLayout>

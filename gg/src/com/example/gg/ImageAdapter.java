@@ -40,17 +40,17 @@ public class ImageAdapter extends BaseAdapter {
 			// set image based on selected text
 			ImageView imageView = (ImageView) gridView
 					.findViewById(R.id.grid_item_image);
-
+  
 			String mobile = mobileValues[position];
 
-			if (mobile.equals("Windows")) {
-				imageView.setImageResource(R.drawable.danteng);
-			} else if (mobile.equals("iOS")) {
+			if (mobile.equals("WoDota")) {
+				imageView.setImageResource(R.drawable.wodota);
+			} else if (mobile.equals("Top10")) {
 				imageView.setImageResource(R.drawable.top10);
-			} else if (mobile.equals("Blackberry")) {
+			} else if (mobile.equals("Dashen")) {
 				imageView.setImageResource(R.drawable.tianti);
 			} else {
-				imageView.setImageResource(R.drawable.wodota);
+				imageView.setImageResource(R.drawable.danteng);
 			}
 
 		} else {
