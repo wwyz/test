@@ -44,13 +44,13 @@ public class ImageAdapter extends BaseAdapter {
 			String mobile = mobileValues[position];
 
 			if (mobile.equals("Windows")) {
-				imageView.setImageResource(R.drawable.windows_logo);
+				imageView.setImageResource(R.drawable.danteng);
 			} else if (mobile.equals("iOS")) {
-				imageView.setImageResource(R.drawable.ios_logo);
+				imageView.setImageResource(R.drawable.top10);
 			} else if (mobile.equals("Blackberry")) {
-				imageView.setImageResource(R.drawable.blackberry_logo);
+				imageView.setImageResource(R.drawable.tianti);
 			} else {
-				imageView.setImageResource(R.drawable.android_logo);
+				imageView.setImageResource(R.drawable.wodota);
 			}
 
 		} else {
