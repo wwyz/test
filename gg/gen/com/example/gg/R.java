@@ -21,24 +21,30 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int danteng=0x7f020000;
-        public static final int dota2icon=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int tianti=0x7f020003;
-        public static final int top10=0x7f020004;
-        public static final int wodota=0x7f020005;
-        public static final int youku=0x7f020006;
-        public static final int youtube=0x7f020007;
+        public static final int baihumeimei=0x7f020000;
+        public static final int danteng=0x7f020001;
+        public static final int dota2icon=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int kaer=0x7f020004;
+        public static final int sf=0x7f020005;
+        public static final int shouwang=0x7f020006;
+        public static final int tianti=0x7f020007;
+        public static final int top10=0x7f020008;
+        public static final int wodota=0x7f020009;
+        public static final int xiaogou=0x7f02000a;
+        public static final int youku=0x7f02000b;
+        public static final int youtube=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
-        public static final int gridView1=0x7f080007;
+        public static final int action_settings=0x7f08000a;
+        public static final int gridView1=0x7f080008;
         public static final int grid_item_image=0x7f080005;
         public static final int grid_item_label=0x7f080006;
         public static final int imageButton1=0x7f080001;
         public static final int imageButton2=0x7f080002;
+        public static final int imageView1=0x7f080007;
         public static final int label=0x7f080004;
-        public static final int listView1=0x7f080008;
+        public static final int listView1=0x7f080009;
         public static final int logo=0x7f080003;
         public static final int mediaController1=0x7f080000;
     }
@@ -46,8 +52,9 @@ public final class R {
         public static final int activity_main=0x7f030000;
         public static final int list_mobile=0x7f030001;
         public static final int mobile=0x7f030002;
-        public static final int youku=0x7f030003;
-        public static final int youtube=0x7f030004;
+        public static final int open=0x7f030003;
+        public static final int youku=0x7f030004;
+        public static final int youtube=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f070000;
