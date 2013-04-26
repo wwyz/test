@@ -12,7 +12,7 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-public class MainActivity extends Activity {
+public class YoutubeAcitivity extends Activity {
 	ImageButton youtube;
 	ImageButton youku;
 	@Override
@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        addListenerOnButton();
+        
         
         
 //        Intent playIntent = new Intent(Intent.ACTION_VIEW);
@@ -38,34 +38,7 @@ public class MainActivity extends Activity {
     }
 
 
-	public void addListenerOnButton() {
-		 
-		youtube = (ImageButton) findViewById(R.id.imageButton1);
- 
-		youtube.setOnClickListener(new OnClickListener() {
- 
-		
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(MainActivity.this,"Youtube is selected", Toast.LENGTH_SHORT).show();
-			 				
-			}
- 
-		});
-		
-		youku=(ImageButton)findViewById(R.id.imageButton2);
-		youku.setOnClickListener(new OnClickListener() {
-			 
-			
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(MainActivity.this,"Youku is selected", Toast.LENGTH_SHORT).show();
-			 				
-			}
- 
-		});
- 
-	}
+
 	
 	
     @Override
