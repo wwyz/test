@@ -13,7 +13,7 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-public class Youku {
+public class Youku extends Activity{
 	ImageButton youtube;
 	ImageButton youku;
 	@Override
