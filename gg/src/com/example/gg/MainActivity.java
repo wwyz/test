@@ -13,7 +13,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 public class MainActivity extends Activity {
-	ImageButton imageButton;
+	ImageButton youtube;
+	ImageButton youku;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +40,26 @@ public class MainActivity extends Activity {
 
 	public void addListenerOnButton() {
 		 
-		imageButton = (ImageButton) findViewById(R.id.imageButton1);
+		youtube = (ImageButton) findViewById(R.id.imageButton1);
  
-		imageButton.setOnClickListener(new OnClickListener() {
+		youtube.setOnClickListener(new OnClickListener() {
  
 		
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity.this,"ImageButton is clicked!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this,"Youtube is selected", Toast.LENGTH_SHORT).show();
+			 				
+			}
+ 
+		});
+		
+		youku=(ImageButton)findViewById(R.id.imageButton2);
+		youku.setOnClickListener(new OnClickListener() {
+			 
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(MainActivity.this,"Youku is selected", Toast.LENGTH_SHORT).show();
 			 				
 			}
  
