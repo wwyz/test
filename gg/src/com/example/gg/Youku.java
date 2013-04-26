@@ -22,7 +22,7 @@ public class Youku extends Activity{
 	GridView gridView;
 	 
 	static final String[] MOBILE_OS = new String[] { 
-		"Android", "iOS","Windows", "Blackberry" };
+		"WoDota", "Top10","Danteng", "Dashen" };
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
