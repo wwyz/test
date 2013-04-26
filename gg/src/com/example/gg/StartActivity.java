@@ -48,10 +48,9 @@ public class StartActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(StartActivity.this,"Youtube is selected", Toast.LENGTH_SHORT).show();
-				   Intent youtubeIntent = new Intent(StartActivity.this,YoutubeActivity.class);
+				   Intent youtubeIntent = new Intent(StartActivity.this,YoutubeAcitivity.class);
 				   startActivity(youtubeIntent);
-				   StartActivity.this.startActivity(youtubeIntent);
-				   
+
 				   
 			}
  
@@ -64,7 +63,9 @@ public class StartActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(StartActivity.this,"Youku is selected", Toast.LENGTH_SHORT).show();
-			 				
+				   Intent youtubeIntent = new Intent(StartActivity.this,YoukuActivity.class);
+				   startActivity(youtubeIntent);
+		
 			}
  
 		});
