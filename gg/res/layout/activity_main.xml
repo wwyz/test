@@ -16,4 +16,12 @@
 
     </MediaController>
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mediaController1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/youtube" />
+
 </RelativeLayout>
