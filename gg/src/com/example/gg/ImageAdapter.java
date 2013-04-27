@@ -16,7 +16,7 @@ public class ImageAdapter extends BaseAdapter {
 	public ImageAdapter(Context context, String[] mobileValues) {
 		this.context = context;
 		this.mobileValues = mobileValues;
-	}
+	}  
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -24,14 +24,14 @@ public class ImageAdapter extends BaseAdapter {
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View gridView;
-
+ 
 		if (convertView == null) {
 
 			gridView = new View(context);
 
 			// get layout from mobile.xml
 			gridView = inflater.inflate(R.layout.mobile, null);
-
+  
 			// set value into textview
 			TextView textView = (TextView) gridView
 					.findViewById(R.id.grid_item_label);
