@@ -14,12 +14,12 @@ import android.widget.VideoView;
 
 public class StartActivity extends Activity {
 	ImageButton youtube;
-	ImageButton youku;
+	ImageButton youku;  
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+            
         addListenerOnButton();
         
         

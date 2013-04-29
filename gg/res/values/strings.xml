@@ -4,5 +4,10 @@
     <string name="app_name">Dota Spark</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="date">update time</string>
+    <string name="listviewpic">picture_front</string>
+    <string name="imageanimation">animationimage</string>
+    <string name="youtube">youtbe</string>
+    <string name="youku">youku</string>
 
 </resources>

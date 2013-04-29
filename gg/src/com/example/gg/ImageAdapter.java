@@ -52,7 +52,7 @@ public class ImageAdapter extends BaseAdapter {
 			} else {
 				imageView.setImageResource(R.drawable.danteng);
 			}
-
+    
 		} else {
 			gridView = (View) convertView;
 		}
