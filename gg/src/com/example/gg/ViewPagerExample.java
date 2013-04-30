@@ -21,7 +21,7 @@ public class ViewPagerExample extends FragmentActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);  
         setContentView(R.layout.navigation_1);
         mAdapter = new MyAdapter(getSupportFragmentManager());
         btn1=(Button)findViewById(R.id.button1);
@@ -63,7 +63,7 @@ public class ViewPagerExample extends FragmentActivity {
  
     private void btnAction(int action){
         switch(action){
-          case 0: setButton(btn1,"1",40,40); setButton(btn2,"",20,20);setButton(btn3,"",20,20); break;
+          case 0: setButton(btn1,"1",40,40); setButton(btn2,"",20,20);setButton(btn3,"",20,20);break;
  
           case 1: setButton(btn2,"2",40,40); setButton(btn1,"",20,20);setButton(btn3,"",20,20); break;
           

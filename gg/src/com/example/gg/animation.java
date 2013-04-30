@@ -14,10 +14,10 @@ private ImageView img_left, img_right;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 // TODO Auto-generated method stub
-super.onCreate(savedInstanceState);
+super.onCreate(savedInstanceState); 
 setContentView(R.layout.animation);
-img_left = (ImageView) findViewById(R.id.zuo);
-img_right = (ImageView) findViewById(R.id.you);
+img_left = (ImageView) findViewById(R.id.left);
+img_right = (ImageView) findViewById(R.id.right);
 AnimationSet animLeft = new AnimationSet(true);
 TranslateAnimation transLeft = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF,-1f, Animation.RELATIVE_TO_SELF, 0f,Animation.RELATIVE_TO_SELF, 0f);
 transLeft.setDuration(2000);

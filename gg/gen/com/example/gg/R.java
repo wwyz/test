@@ -27,16 +27,18 @@ public final class R {
         public static final int dota2icon=0x7f020003;
         public static final int ic_launcher=0x7f020004;
         public static final int kaer=0x7f020005;
-        public static final int round_button=0x7f020006;
-        public static final int sf=0x7f020007;
-        public static final int shouwang=0x7f020008;
-        public static final int tianti=0x7f020009;
-        public static final int top10=0x7f02000a;
-        public static final int wodota=0x7f02000b;
-        public static final int xiaogou=0x7f02000c;
-        public static final int xiaohei=0x7f02000d;
-        public static final int youku=0x7f02000e;
-        public static final int youtube=0x7f02000f;
+        public static final int left=0x7f020006;
+        public static final int right=0x7f020007;
+        public static final int round_button=0x7f020008;
+        public static final int sf=0x7f020009;
+        public static final int shouwang=0x7f02000a;
+        public static final int tianti=0x7f02000b;
+        public static final int top10=0x7f02000c;
+        public static final int wodota=0x7f02000d;
+        public static final int xiaogou=0x7f02000e;
+        public static final int xiaohei=0x7f02000f;
+        public static final int youku=0x7f020010;
+        public static final int youtube=0x7f020011;
     }
     public static final class id {
         public static final int GameLayout=0x7f080011;
@@ -53,13 +55,13 @@ public final class R {
         public static final int imageButton2=0x7f080002;
         public static final int imageView1=0x7f080010;
         public static final int label=0x7f080006;
+        public static final int left=0x7f080003;
         public static final int listView1=0x7f080013;
         public static final int logo=0x7f080005;
         public static final int mediaController1=0x7f080000;
         public static final int pager=0x7f08000b;
+        public static final int right=0x7f080004;
         public static final int updatetime=0x7f080007;
-        public static final int you=0x7f080004;
-        public static final int zuo=0x7f080003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
