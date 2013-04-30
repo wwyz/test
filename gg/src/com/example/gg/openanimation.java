@@ -35,7 +35,7 @@ public void onCreate(Bundle savedInstanceState){
 	
 		
 		
-		Intent intent=new Intent(openanimation.this,StartActivity.class);
+		Intent intent=new Intent(openanimation.this,ViewPagerExample.class);
 		startActivity(intent);
 		openanimation.this.finish();
 		
