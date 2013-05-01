@@ -34,21 +34,21 @@
            android:id="@+id/button1"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@drawable/"
+           android:background="@drawable/button_focus"
            android:text="Button" />
 
        <Button
            android:id="@+id/button2"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@android:drawable/radiobutton_off_background"
+           android:background="@drawable/button_normal"
            android:text="Button" />
 
        <Button
            android:id="@+id/button3"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@android:drawable/radiobutton_off_background"
+           android:background="@drawable/button_normal"
            android:text="Button" />
    </LinearLayout>
 

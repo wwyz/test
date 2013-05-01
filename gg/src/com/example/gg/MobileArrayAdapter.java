@@ -37,10 +37,12 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 			imageView.setImageResource(R.drawable.wodota);
 		} else if (s.equals("Top10")) {
 			imageView.setImageResource(R.drawable.top10);
-		} else if (s.equals("Dashen")) {
+		} else if (s.equals("Danteng")) {
 			imageView.setImageResource(R.drawable.tianti);
-		} else {
+		} else if (s.equals("DotaCinema")){
 			imageView.setImageResource(R.drawable.danteng);
+		}else{
+			
 		}
  
 		return rowView;

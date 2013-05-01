@@ -49,9 +49,9 @@ public class ImageAdapter extends BaseAdapter {
 				imageView.setImageResource(R.drawable.top10);
 			} else if (mobile.equals("Dashen")) {
 				imageView.setImageResource(R.drawable.tianti);
-			} else {
+			} else if(mobile.equals("DotaCinema")){
 				imageView.setImageResource(R.drawable.danteng);
-			}
+			} 
     
 		} else {
 			gridView = (View) convertView;

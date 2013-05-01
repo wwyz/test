@@ -30,8 +30,8 @@ TranslateAnimation transRight = new TranslateAnimation(
 Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF,
 1f, Animation.RELATIVE_TO_SELF, 0f,
 Animation.RELATIVE_TO_SELF, 0f);
-transRight.setDuration(2000);
-
+transRight.setDuration(2000); 
+ 
 animRight.addAnimation(transRight);
 animRight.setFillAfter(true);
 img_right.startAnimation(transRight);
