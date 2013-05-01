@@ -23,22 +23,24 @@ public final class R {
     public static final class drawable {
         public static final int background=0x7f020000;
         public static final int baihumeimei=0x7f020001;
-        public static final int danteng=0x7f020002;
-        public static final int dota2icon=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int kaer=0x7f020005;
-        public static final int left=0x7f020006;
-        public static final int right=0x7f020007;
-        public static final int round_button=0x7f020008;
-        public static final int sf=0x7f020009;
-        public static final int shouwang=0x7f02000a;
-        public static final int tianti=0x7f02000b;
-        public static final int top10=0x7f02000c;
-        public static final int wodota=0x7f02000d;
-        public static final int xiaogou=0x7f02000e;
-        public static final int xiaohei=0x7f02000f;
-        public static final int youku=0x7f020010;
-        public static final int youtube=0x7f020011;
+        public static final int button_focus=0x7f020002;
+        public static final int button_normal=0x7f020003;
+        public static final int danteng=0x7f020004;
+        public static final int dota2icon=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int kaer=0x7f020007;
+        public static final int left=0x7f020008;
+        public static final int right=0x7f020009;
+        public static final int round_button=0x7f02000a;
+        public static final int sf=0x7f02000b;
+        public static final int shouwang=0x7f02000c;
+        public static final int tianti=0x7f02000d;
+        public static final int top10=0x7f02000e;
+        public static final int wodota=0x7f02000f;
+        public static final int xiaogou=0x7f020010;
+        public static final int xiaohei=0x7f020011;
+        public static final int youku=0x7f020012;
+        public static final int youtube=0x7f020013;
     }
     public static final class id {
         public static final int GameLayout=0x7f080011;
