@@ -16,30 +16,31 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.gg.StartActivity"
+            android:name="com.examples.gg.StartActivity"
             android:label="@string/app_name" >
           </activity>
   
               <activity
-            android:name="com.example.gg.Youtube"
+            android:name="com.examples.gg.Youtube"
             android:label="@string/app_name" >
                   </activity>
               <activity
-            android:name="com.example.gg.Youku"
+            android:name="com.examples.gg.Youku"
             android:label="@string/app_name" >
 
         </activity>        
             <activity
-            android:name="com.example.gg.openanimation"
+            android:name="com.examples.gg.openanimation"
             android:label="@string/app_name" >
-        	        <intent-filter>
+        	<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            	</intent-filter>
+        		      
         	</activity>
                 
             <activity
-            android:name="com.example.gg.ViewPagerExample"
+            android:name="com.examples.gg.ViewPagerExample"
             android:label="@string/app_name" >
     
         </activity>        
@@ -47,13 +48,17 @@
 
                   
             <activity
-            android:name="com.example.gg.inside_listview"
+            android:name="com.examples.gg.inside_listview"
             android:label="@string/app_name" >
  
         </activity>           
  
+              <activity
+            	android:name="com.examples.gg.MainActivity"
+            	android:label="@string/app_name" >
+      			</activity>   
             <activity
-            android:name="com.example.gg.animation"
+            android:name="com.examples.gg.animation"
             android:label="@string/app_name" >
     
         </activity>     
