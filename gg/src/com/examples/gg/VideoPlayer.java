@@ -18,12 +18,13 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class VideoPlayer extends YouTubeBaseActivity 
+public class VideoPlayer extends YouTubeFailureRecoveryActivity 
  implements YouTubePlayer.OnInitializedListener,  YouTubePlayer.OnFullscreenListener{
 
  private YouTubePlayerView ytpv;
  private YouTubePlayer ytp;
  private EditText et;
+
  private String video;
  private boolean isfullscreen;
  
@@ -43,13 +44,8 @@ public class VideoPlayer extends YouTubeBaseActivity
 	video = intent.getStringExtra("video");
   
   ytpv = (YouTubePlayerView) findViewById(R.id.youtubeplayer);
-  ytpv.initialize("AIzaSyAuEa3bIKbSYiXVWbHU_zueVzEBv9p2r_Y", this);
+  ytpv.initialize("AIzaSyB2varxkJ1n4O_d0WFmG_qNX-84jFkE0Ko", this);
   
- }
-
- @Override
- public void onInitializationFailure(Provider arg0,YouTubeInitializationResult arg1) {
-  Toast.makeText(this, arg1.toString(), Toast.LENGTH_LONG).show();
  }
 
  @Override
@@ -70,7 +66,7 @@ public class VideoPlayer extends YouTubeBaseActivity
 	 if (isfullscreen) setRequestedOrientation(LANDSCAPE_ORIENTATION);
 	 else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
  }
- 
+  
 //Check screen orientation or screen rotate event here
  @Override
  public void onConfigurationChanged(Configuration newConfig) {
@@ -82,5 +78,10 @@ public class VideoPlayer extends YouTubeBaseActivity
     		 setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
      }else  System.out.println("NOT FULL!!!!!!!!!!!!!!!!!!!!!!!!");
  }
- 
+
+ @Override
+ protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+   return ytpv;
+ }
 }
+ 

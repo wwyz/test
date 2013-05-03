@@ -3,6 +3,8 @@ package com.examples.gg;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -11,11 +13,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-public class Youku extends Activity{
+public class Youku extends ListActivity{
 	ImageButton youtube;
 	ImageButton youku;
 	GridView gridView;
@@ -25,41 +28,26 @@ public class Youku extends Activity{
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.youku);
-
-        
-        
-
-		gridView = (GridView) findViewById(R.id.gridView1);
- 
-		gridView.setAdapter(new ImageAdapter(this, MOBILE_OS));
- 
-		gridView.setOnItemClickListener(new OnItemClickListener() {
-	
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				
-			
-		}});
- 
-//        Intent playIntent = new Intent(Intent.ACTION_VIEW);
-//        playIntent.setData(Uri.parse("http://www.youtube.com/watch?v=sMM0R19IisI"));
-//        playIntent.putExtra("force_fullscreen", true);
-//        
-//        
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=sMM0R19IisI"));
-//        intent.putExtra("force_fullscreen",true); 
-//        startActivity(intent);
-       // Intent intent = new Intent(this, MainActivity.class);
-
-
-        //MainActivity.this.startActivity(playIntent);
+    	setListAdapter(new MobileArrayAdapter(this, MOBILE_OS));
     }
 
 
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+ 
+		//get selected items
+		String selectedValue = (String) getListAdapter().getItem(position);
+		Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
+		ProgressDialog pd;
+	
+		if(selectedValue=="DotaCinema"){
+			pd = ProgressDialog.show(Youku.this,"This is the title","This is the detail text",true,false,null);
 
+	    	
+			new YoutubeFeed2(getApplicationContext(),pd).execute("https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=5&amp&v=2&alt=json");
+						
+				}
+	}
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
