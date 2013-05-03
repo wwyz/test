@@ -13,16 +13,26 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class inside_listview extends ListActivity{
-private List<String> titles;
+private String[] titles;
+private String[] videos;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
 //		String set = intent.getStringExtra("set");
-		String[] array=intent.getStringArrayExtra("array");
-		if(array!=null){
-			setListAdapter(new MobileArrayAdapter(this, array));}
+		titles = intent.getStringArrayExtra("titles");
+		videos = intent.getStringArrayExtra("videos");
+		
+		for (String v: videos){
+			
+			
+			System.out.println("ID: "+ v);
+		}
+		
+		
+		if(titles!=null){
+			setListAdapter(new MobileArrayAdapter(this, titles));}
 		
 		
 //			
@@ -92,7 +102,12 @@ private List<String> titles;
  
 		//get selected items
 		String selectedValue = (String) getListAdapter().getItem(position);
-		Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, videos[position], Toast.LENGTH_SHORT).show();
+		
+        Intent i = new Intent(inside_listview.this, VideoPlayer.class);
+        i.putExtra("video", videos[position]);
+        startActivity(i);
+		
 		}
  
 }

@@ -1,6 +1,6 @@
 package com.examples.gg;
 
-import com.example.gg.R;
+import com.examples.gg.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

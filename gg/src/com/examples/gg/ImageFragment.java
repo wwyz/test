@@ -1,9 +1,6 @@
 package com.examples.gg;
 
-
- 
-import com.example.gg.R;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
  
+@SuppressLint("ValidFragment")
 public class ImageFragment extends Fragment {
     private final int imageResourceId;
- 
-    public ImageFragment(int imageResourceId) {
+     
+	public ImageFragment(int imageResourceId) {
         this.imageResourceId = imageResourceId;
     }
  

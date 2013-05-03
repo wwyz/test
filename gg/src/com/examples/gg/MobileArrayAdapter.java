@@ -1,7 +1,5 @@
 package com.examples.gg;
 
-import com.example.gg.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

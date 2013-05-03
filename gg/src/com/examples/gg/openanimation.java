@@ -2,7 +2,7 @@ package com.examples.gg;
 
 import java.util.Random;
 
-import com.example.gg.R;
+import com.examples.gg.R;
 
 import android.app.Activity;
 import android.content.Intent;

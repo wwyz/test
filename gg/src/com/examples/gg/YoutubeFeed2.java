@@ -75,15 +75,20 @@ class YoutubeFeed2 extends AsyncTask<String, String, String>{
         }
         
         List<String> titles=new ArrayList();   
+        List<String> ids = new ArrayList();
         List<Video> videos = getVideoPlaylist();
         for(Video v:videos){
 //            System.out.println(v.getVideoId());
         	titles.add(v.getTitle());
+        	ids.add(v.getVideoId());
 
         }
         
         String[] mStringArray = new String[titles.size()];
 		mStringArray = titles.toArray(mStringArray);
+		
+        String[] idsArray = new String[ids.size()];
+        idsArray = ids.toArray(idsArray);
 
 		for(int i = 0; i < mStringArray.length ; i++){
 		    System.out.println(mStringArray[i]);
@@ -101,7 +106,8 @@ class YoutubeFeed2 extends AsyncTask<String, String, String>{
         
         pd.dismiss();
         Intent i = new Intent(context, inside_listview.class);
-        i.putExtra("array", mStringArray);
+        i.putExtra("titles", mStringArray);
+        i.putExtra("videos",  idsArray);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
 
@@ -110,10 +116,10 @@ class YoutubeFeed2 extends AsyncTask<String, String, String>{
     
     private void processJSON(String json) throws JSONException{
         JSONTokener jsonParser = new JSONTokener(json);  
-        // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  
-        // 如果此时的读取位置在"name" : 了，那么nextValue就是"yuanzhifei89"（String）  
+        // 豁､譌ｶ霑俶悴隸ｻ蜿紋ｻｻ菴彬son譁�悽�檎峩謗･隸ｻ蜿門ｰｱ譏ｯ荳�ｸｪJSONObject蟇ｹ雎｡縲� 
+        // 螯よ棡豁､譌ｶ逧�ｯｻ蜿紋ｽ咲ｽｮ蝨ｨ"name" : 莠�ｼ碁ぅ荵�extValue蟆ｱ譏ｯ"yuanzhifei89"��tring�� 
         JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
-        // 接下来的就是JSON对象的操作了  
+        // 謗･荳区擂逧�ｰｱ譏ｯJSON蟇ｹ雎｡逧�桃菴應ｺ� 
         this.feed = wholeJson.getJSONObject("feed");
         
         
@@ -133,8 +139,8 @@ class YoutubeFeed2 extends AsyncTask<String, String, String>{
             //System.out.println("Length: "+ playlist.length());
             
             for(int i=0;i<playlist.length();i++){
-                //get a video in the playlist            // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  
-                // 如果此时的读取位置在"name" : 了，那么nextValue就是"yuanzhifei89"（String）  
+                //get a video in the playlist            // 豁､譌ｶ霑俶悴隸ｻ蜿紋ｻｻ菴彬son譁�悽�檎峩謗･隸ｻ蜿門ｰｱ譏ｯ荳�ｸｪJSONObject蟇ｹ雎｡縲� 
+                // 螯よ棡豁､譌ｶ逧�ｯｻ蜿紋ｽ咲ｽｮ蝨ｨ"name" : 莠�ｼ碁ぅ荵�extValue蟆ｱ譏ｯ"yuanzhifei89"��tring�� 
                 JSONObject oneVideo = playlist.getJSONObject(i);
                 //get the title of this video
                 String videoTitle = oneVideo.getJSONObject("title").getString("$t");
@@ -156,7 +162,7 @@ class YoutubeFeed2 extends AsyncTask<String, String, String>{
             //System.out.println("Result: "+result);
 
         } catch (JSONException ex) {  
-            // 异常处理代码  
+            // 蠑ょｸｸ螟�炊莉｣遐� 
             ex.printStackTrace();
         }  
         
