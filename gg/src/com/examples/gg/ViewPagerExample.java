@@ -54,6 +54,13 @@ public class ViewPagerExample extends FragmentActivity {
    	 startActivity(intent);
    	 this.finish();
     }
+    
+    public void startspark(){
+      	 Intent intent=new Intent();
+      	 intent.setClass(ViewPagerExample.this, animation.class);
+      	 startActivity(intent);
+      	 this.finish();
+       }
     private void setButton(Button btn,String text,int h, int w){
         btn.setWidth(w);
         btn.setHeight(h);
@@ -67,18 +74,20 @@ public class ViewPagerExample extends FragmentActivity {
           case 1: setButton(btn2,"2",40,40); setButton(btn1,"",20,20);setButton(btn3,"",20,20); break;
           
           case 2: setButton(btn3,"3",40,40); setButton(btn1,"",20,20);setButton(btn2,"",20,20); break;
+         
+          case 3: setButton(btn3,"3",40,40); setButton(btn1,"",20,20);setButton(btn2,"",20,20); break;
           
           
         }
     }
-    public static class MyAdapter extends FragmentPagerAdapter {
+    public class MyAdapter extends FragmentPagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }
  
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
  
         @Override
@@ -90,7 +99,10 @@ public class ViewPagerExample extends FragmentActivity {
                 return new ImageFragment(R.drawable.baihumeimei);
             case 2:
                 return new ImageFragment(R.drawable.kaer);
-          
+            case 3:
+            	startspark();
+            	return new ImageFragment(R.drawable.kaer);
+        
             default:
                 return null;
             }

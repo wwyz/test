@@ -35,6 +35,7 @@ public class ImageFragment extends Fragment {
         View view = inflater.inflate(R.layout.navigation_3, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView1);
         imageView.setImageResource(imageResourceId);
+        
         return view;
     }
 }

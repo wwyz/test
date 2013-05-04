@@ -29,6 +29,9 @@ public class navigation_1 extends Fragment {
         View view = inflater.inflate(R.layout.navigation_2, container, false);
         TextView textView = (TextView) view.findViewById(R.id.detailsText);
         textView.setText("Amazing Dota, start from Dota Spark!");
+    
+        
         return view;
     }
+    
 }
