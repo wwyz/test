@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 public class openanimation extends Activity{
 public static final String PREFS_NAME="first_night";
-	
+	 
 @Override
 public void onCreate(Bundle savedInstanceState){
 	super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public void onCreate(Bundle savedInstanceState){
     			
     				
     				
-    				Intent intent=new Intent(openanimation.this,StartActivity.class);
+    				Intent intent=new Intent(openanimation.this,Youtube.class);
     				startActivity(intent);
     				openanimation.this.finish();
     				

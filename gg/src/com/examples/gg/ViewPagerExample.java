@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
  
 public class ViewPagerExample extends FragmentActivity {
     private MyAdapter mAdapter;
@@ -87,22 +88,32 @@ public class ViewPagerExample extends FragmentActivity {
  
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
  
         @Override
         public Fragment getItem(int position) {
             switch (position) {
             case 0:
-                return new navigation_1();
+            System.out.println("0");
+            	return new navigation_1();
+                
             case 1:
-                return new ImageFragment(R.drawable.baihumeimei);
+
+                System.out.println("1");
+                	
+            	return new ImageFragment(R.drawable.baihumeimei);
             case 2:
+//
+//                System.out.println("2");
+//                	
                 return new ImageFragment(R.drawable.kaer);
             case 3:
+                return new ImageFragment(R.drawable.shouwang);
+            case 4:
             	startspark();
-            	return new ImageFragment(R.drawable.kaer);
-        
+                return new ImageFragment(R.drawable.shouwang);
+                
             default:
                 return null;
             }

@@ -43,7 +43,7 @@ mygifview view = new mygifview(this, stream);
          LinearLayout.LayoutParams.MATCH_PARENT
          
         		 );
- 
+
  view.setLayoutParams(lp);
 
 parent.addView(view);
@@ -78,7 +78,7 @@ new Handler().postDelayed(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 	System.out.println("jin le ");
-Intent intent = new Intent(animation.this, StartActivity.class);
+Intent intent = new Intent(animation.this, Youtube.class);
 startActivity(intent);
 animation.this.finish();
 }
