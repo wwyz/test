@@ -50,7 +50,7 @@ public void onCreate(Bundle savedInstanceState){
 		openanimation.this.finish();
 		
 	}
-	}, 3000);
+	}, 1000);
      
 	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
     SharedPreferences.Editor editor = settings.edit();
@@ -69,7 +69,7 @@ public void onCreate(Bundle savedInstanceState){
     				openanimation.this.finish();
     				
     			}
-    			}, 3000);
+    			}, 2000);
     	 
      }
 }

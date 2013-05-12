@@ -69,11 +69,11 @@ public class ViewPagerExample extends FragmentActivity {
  
     private void btnAction(int action){
         switch(action){
-          case 0: setButton(btn1,"1",40,40); setButton(btn2,"",20,20);setButton(btn3,"",20,20);break;
+          case 0: btn1.setBackgroundResource(R.drawable.d2_selected);btn2.setBackgroundResource(R.drawable.d2_unselected);btn3.setBackgroundResource(R.drawable.d2_unselected); break;
  
-          case 1: setButton(btn2,"2",40,40); setButton(btn1,"",20,20);setButton(btn3,"",20,20); break;
+          case 1: btn1.setBackgroundResource(R.drawable.d2_unselected);btn2.setBackgroundResource(R.drawable.d2_selected);btn3.setBackgroundResource(R.drawable.d2_unselected); break;
           
-          case 2: setButton(btn3,"3",40,40); setButton(btn1,"",20,20);setButton(btn2,"",20,20); break;
+          case 2: btn1.setBackgroundResource(R.drawable.d2_unselected);btn2.setBackgroundResource(R.drawable.d2_unselected);btn3.setBackgroundResource(R.drawable.d2_selected);break;
          
           case 3: setButton(btn3,"3",40,40); setButton(btn1,"",20,20);setButton(btn2,"",20,20); break;
           

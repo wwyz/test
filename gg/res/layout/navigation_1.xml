@@ -34,22 +34,26 @@
            android:id="@+id/button1"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@drawable/button_focus"
+           android:background="@drawable/d2_selected"
+           android:gravity="center"
            android:text="Button" />
 
        <Button
            android:id="@+id/button2"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@drawable/button_normal"
+           android:background="@drawable/d2_unselected"
+           android:gravity="center"
            android:text="Button" />
 
        <Button
            android:id="@+id/button3"
+           android:gravity="center"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:background="@drawable/button_normal"
+           android:background="@drawable/d2_unselected"
            android:text="Button" />
+
    </LinearLayout>
 
 </LinearLayout>

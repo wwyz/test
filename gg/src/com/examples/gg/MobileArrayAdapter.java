@@ -1,5 +1,8 @@
 package com.examples.gg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +13,9 @@ import android.widget.TextView;
  
 public class MobileArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
-	private final String[] values;
+	private final ArrayList<String> values;
  
-	public MobileArrayAdapter(Context context, String[] values) {
+	public MobileArrayAdapter(Context context, ArrayList<String> values) {
 		super(context, R.layout.list_mobile, values);
 		this.context = context;
 		this.values = values;
@@ -26,10 +29,10 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(R.layout.list_mobile, parent, false);
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-		textView.setText(values[position]);
+		textView.setText(values.get(position));
  
 		// Change icon based on name
-		String s = values[position];
+		String s = values.get(position);
  
 		System.out.println(s);
  

@@ -28,7 +28,7 @@ public class Youku extends ListActivity{
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    	setListAdapter(new MobileArrayAdapter(this, MOBILE_OS));
+    //	setListAdapter(new MobileArrayAdapter(this, MOBILE_OS));
     }
 
 
@@ -44,7 +44,7 @@ public class Youku extends ListActivity{
 			pd = ProgressDialog.show(Youku.this,"This is the title","This is the detail text",true,false,null);
 
 	    	
-			new YoutubeFeed2(getApplicationContext(),pd).execute("https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=5&amp&v=2&alt=json");
+			//new YoutubeFeed2(getApplicationContext(),pd).execute("https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=5&amp&v=2&alt=json");
 						
 				}
 	}

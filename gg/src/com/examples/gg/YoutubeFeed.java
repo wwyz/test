@@ -25,53 +25,45 @@ import android.util.Log;
 public class YoutubeFeed
 {
 
-    private String api;
     private JSONObject feed;
     
     
 
 
-    public YoutubeFeed(String url) throws JSONException{
-
-       setApi(url);
-       
-       String youtubeFeed = readYoutubeFeed(api);
-       JSONTokener jsonParser = new JSONTokener(youtubeFeed);  
-       
-       // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  
-       // 如果此时的读取位置在"name" : 了，那么nextValue就是"yuanzhifei89"（String）  
-       JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
-       // 接下来的就是JSON对象的操作了  
-       
-       JSONObject feed = wholeJson.getJSONObject("feed");
-       
-       setFeed(feed);
-       
-       
+    public YoutubeFeed(String json) throws JSONException{
+    	processJSON(json);
     }
-    
-    public List<Video> getVideoPlaylist(){
-        List<Video> videos = new ArrayList<Video>();
+
+    public ArrayList<Video> getVideoPlaylist(){
+        ArrayList<Video> videos = new ArrayList<Video>();
         
         try {
 
             //get title of the playlist
             String plTitle = feed.getJSONObject("title").getString("$t");
-            Video.setPlaylistTitle(plTitle);
             //System.out.println(plTitle);
             //get the playlist
             JSONArray playlist = feed.getJSONArray("entry");
             //System.out.println("Length: "+ playlist.length());
             
             for(int i=0;i<playlist.length();i++){
-                //get a video in the playlist            // 此时还未读取任何json文本，直接读取就是一个JSONObject对象。  
-                // 如果此时的读取位置在"name" : 了，那么nextValue就是"yuanzhifei89"（String）  
+                //get a video in the playlist            // 豁､譌ｶ霑俶悴隸ｻ蜿紋ｻｻ菴彬son譁�悽�檎峩謗･隸ｻ蜿門ｰｱ譏ｯ荳�ｸｪJSONObject蟇ｹ雎｡縲� 
+                // 螯よ棡豁､譌ｶ逧�ｯｻ蜿紋ｽ咲ｽｮ蝨ｨ"name" : 莠�ｼ碁ぅ荵�extValue蟆ｱ譏ｯ"yuanzhifei89"��tring�� 
                 JSONObject oneVideo = playlist.getJSONObject(i);
                 //get the title of this video
                 String videoTitle = oneVideo.getJSONObject("title").getString("$t");
                 String videoLink = oneVideo.getJSONObject("content").getString("src");
+                String videoId = videoLink.substring(26, videoLink.indexOf("?"));
+                String videoDesc = oneVideo.getJSONObject("media$group").getJSONObject("media$description").getString("$t");
+                String thumbUrl = oneVideo.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url");
+                System.out.println(thumbUrl);
+                System.out.println(videoDesc);
                 //store title and link
-                Video video = new Video(videoTitle, videoLink);
+                Video video = new Video();
+                video.setTitle(videoTitle);
+                video.setVideoId(videoId);
+                video.setThumbnailUrl(thumbUrl);
+                video.setVideoDesc(videoDesc);
                 //System.out.println(video.getTitle());
                 //push it to the list
                 videos.add(video);
@@ -86,14 +78,12 @@ public class YoutubeFeed
             //System.out.println("Result: "+result);
 
         } catch (JSONException ex) {  
-            // 异常处理代码  
+            // 蠑ょｸｸ螟�炊莉｣遐� 
             ex.printStackTrace();
         }  
         
         
-        return videos;
-        
-        
+        return videos;      
     }
     
     public String getNextApi() throws JSONException{
@@ -111,56 +101,25 @@ public class YoutubeFeed
         return null;
         
     }
+
+
+
+	public JSONObject getFeed() {
+		return feed;
+	}
+
+
+
+
+	public void setFeed(JSONObject feed) {
+		this.feed = feed;
+	}
     
-    public String readYoutubeFeed(String url) {
-        StringBuilder builder = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(url);
-        try {
-          HttpResponse response = client.execute(httpGet);
-          StatusLine statusLine = response.getStatusLine();
-          int statusCode = statusLine.getStatusCode();
-          if (statusCode == 200) {
-            HttpEntity entity = response.getEntity();
-            InputStream content = entity.getContent();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-            String line;
-            while ((line = reader.readLine()) != null) {
-              builder.append(line);
-            }
-          } else {
-            Log.e(YoutubeFeed.class.toString(), "Failed to download file");
-          }
-        } catch (ClientProtocolException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-        return builder.toString();
-      }
-
-    public String getApi()
-    {
-
-        return api;
+	
+    private void processJSON(String json) throws JSONException{
+        JSONTokener jsonParser = new JSONTokener(json);  
+        JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
+        this.feed = wholeJson.getJSONObject("feed");
     }
 
-    public void setApi(String wholeApi)
-    {
-
-        this.api = wholeApi;
-    }
-    
-    public JSONObject getFeed()
-    {
-    
-        return feed;
-    }
-
-    
-    public void setFeed(JSONObject feed)
-    {
-        this.feed = feed;
-
-    }
 }
