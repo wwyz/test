@@ -3,8 +3,6 @@ package com.examples.gg;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.examples.gg.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,7 +76,7 @@ new Handler().postDelayed(new Runnable() {
 public void run() {
 // TODO Auto-generated method stub
 	System.out.println("jin le ");
-Intent intent = new Intent(animation.this, Youtube.class);
+Intent intent = new Intent(animation.this, StartActivity.class);
 startActivity(intent);
 animation.this.finish();
 }

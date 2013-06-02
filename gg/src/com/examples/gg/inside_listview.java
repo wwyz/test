@@ -42,6 +42,7 @@ import com.costum.android.widget.LoadMoreListView;
 import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
 
 public class inside_listview extends ListActivity{
+private LoadMoreListView myLoadMoreListView;
 private ArrayList<String> titles;
 private ArrayList<String> videos;
 private ArrayList<String> thumbList;
@@ -84,7 +85,7 @@ private boolean isMoreVideos;
 			setListAdapter(new VideoArrayAdapter(this, titles, videolist));
 		}
 		
-		LoadMoreListView myLoadMoreListView =  (LoadMoreListView) this.getListView();
+		myLoadMoreListView =  (LoadMoreListView) this.getListView();
 		
 		myLoadMoreListView
 		.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -181,6 +182,11 @@ private boolean isMoreVideos;
 
 			// Call onLoadMoreComplete when the LoadMore task, has finished
 			((LoadMoreListView) getListView()).onLoadMoreComplete();
+			
+			if (!isMoreVideos) {
+				((LoadMoreListView) getListView()).onNoMoreItems();
+				myLoadMoreListView.setOnLoadMoreListener(null);
+			}
 
 			super.onPostExecute(result);
 

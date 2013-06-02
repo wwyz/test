@@ -64,7 +64,7 @@ public void onCreate(Bundle savedInstanceState){
     			
     				
     				
-    				Intent intent=new Intent(openanimation.this,Youtube.class);
+    				Intent intent=new Intent(openanimation.this,StartActivity.class);
     				startActivity(intent);
     				openanimation.this.finish();
     				

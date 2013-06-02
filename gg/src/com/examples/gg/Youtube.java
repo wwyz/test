@@ -24,9 +24,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
  
-public class Youtube extends ListActivity {
+public class Youtube extends ListFragment {
   
 	static ArrayList<String> MOBILE_OS;
 	
@@ -35,26 +38,27 @@ public class Youtube extends ListActivity {
 	ProgressDialog pd;
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
 		String[] Options = new String[] { 
 				"TopFails", "Top10","Danteng", "DotaCinema" };
 		
 		MOBILE_OS = new ArrayList<String>(Arrays.asList(Options));
 	
-		setListAdapter(new MobileArrayAdapter(this, MOBILE_OS));
+		setListAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
  
-		appContext = this.getApplicationContext();
+		appContext = inflater.getContext();
+		
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
+	public void onListItemClick(ListView l, View v, int position, long id) {
  
 		//get selected items
 		String selectedValue = (String) getListAdapter().getItem(position);
 		//Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
-		pd = ProgressDialog.show(Youtube.this,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
+		pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
 
 
 		if(selectedValue=="DotaCinema"){
@@ -178,10 +182,10 @@ public class Youtube extends ListActivity {
 	    
 	    private void processJSON(String json) throws JSONException{
 	        JSONTokener jsonParser = new JSONTokener(json);  
-	        // 豁､譌ｶ霑俶悴隸ｻ蜿紋ｻｻ菴彬son譁�悽�檎峩謗･隸ｻ蜿門ｰｱ譏ｯ荳�ｸｪJSONObject蟇ｹ雎｡縲� 
-	        // 螯よ棡豁､譌ｶ逧�ｯｻ蜿紋ｽ咲ｽｮ蝨ｨ"name" : 莠�ｼ碁ぅ荵�extValue蟆ｱ譏ｯ"yuanzhifei89"��tring�� 
+	        // 雎�ｽ､隴鯉ｽｶ髴台ｿｶ謔ｴ髫ｸ�ｻ陷ｿ邏具ｽｻ�ｻ闖ｴ蠖ｬson隴�ｿｽ謔ｽ�ｽ讙主ｳｩ隰暦ｽ･髫ｸ�ｻ陷ｿ髢�ｽｰ�ｱ隴擾ｽｯ闕ｳ�ｽ�ｸ�ｪJSONObject陝�ｽｹ髮趣ｽ｡邵ｲ�ｽ 
+	        // 陞ｯ繧域｣｡雎�ｽ､隴鯉ｽｶ騾ｧ�ｽ�ｯ�ｻ陷ｿ邏具ｽｽ蜥ｲ�ｽ�ｮ陜ｨ�ｨ"name" : 闔�ｿｽ�ｼ遒√≦闕ｵ�ｽextValue陝�ｽｱ隴擾ｽｯ"yuanzhifei89"�ｽ�ｽtring�ｽ�ｽ 
 	        JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
-	        // 謗･荳区擂逧�ｰｱ譏ｯJSON蟇ｹ雎｡逧�桃菴應ｺ� 
+	        // 隰暦ｽ･闕ｳ蛹ｺ謫る��ｽ�ｰ�ｱ隴擾ｽｯJSON陝�ｽｹ髮趣ｽ｡騾ｧ�ｽ譯�抄諛会ｽｺ�ｽ 
 	        this.feed = wholeJson.getJSONObject("feed");
 	        
 	        
