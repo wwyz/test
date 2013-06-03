@@ -44,12 +44,18 @@ public class Youtube extends ListFragment {
 				"TopFails", "Top10","Danteng", "DotaCinema" };
 		
 		MOBILE_OS = new ArrayList<String>(Arrays.asList(Options));
-	
-		setListAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
- 
+		
+		View view = inflater.inflate(android.R.layout.list_content, null);
+	    ListView ls = (ListView) view.findViewById(android.R.id.list);
+
+	    ls.setAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
+	    
+	    ls.setDivider(null);
+	    ls.setDividerHeight(0);
+
 		appContext = inflater.getContext();
 		
-		return super.onCreateView(inflater, container, savedInstanceState);
+		return view;
 	}
 	
 	@Override

@@ -58,7 +58,7 @@ public final class R {
     public static final class id {
         public static final int GameLayout=0x7f090016;
         public static final int Uploader=0x7f090006;
-        public static final int action_settings=0x7f090023;
+        public static final int action_settings=0x7f090022;
         public static final int button1=0x7f090012;
         public static final int button2=0x7f090013;
         public static final int button3=0x7f090014;
@@ -73,7 +73,6 @@ public final class R {
         public static final int imageView1=0x7f090005;
         public static final int label=0x7f090008;
         public static final int left=0x7f090003;
-        public static final int listView1=0x7f090022;
         public static final int load_more_footer=0x7f09000b;
         public static final int load_more_progressBar=0x7f09000d;
         public static final int logo=0x7f090007;
@@ -109,7 +108,6 @@ public final class R {
         public static final int videoplayer=0x7f03000c;
         public static final int viewgroup=0x7f03000d;
         public static final int youku=0x7f03000e;
-        public static final int youtube=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f080000;
