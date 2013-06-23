@@ -33,9 +33,21 @@ public class VideoArrayAdapter extends ArrayAdapter<String> {
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
  
 		View rowView = inflater.inflate(R.layout.list_mobile, parent, false);
-		TextView textView = (TextView) rowView.findViewById(R.id.label);
+		TextView titleView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-		textView.setText(values.get(position));
+		titleView.setText(values.get(position));
+		
+		//set the description
+		TextView descView = (TextView) rowView.findViewById(R.id.description);
+		descView.setText(videos.get(position).getVideoDesc());
+		
+		//set the author
+		TextView authorView = (TextView) rowView.findViewById(R.id.Uploader);
+		authorView.setText(videos.get(position).getAuthor());
+		
+		//set the update time
+		TextView timeView = (TextView) rowView.findViewById(R.id.updatetime);
+		timeView.setText(videos.get(position).getUpdateTime());
  
 		// Change icon based on name
 			

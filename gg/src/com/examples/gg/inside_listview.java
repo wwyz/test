@@ -1,13 +1,8 @@
 package com.examples.gg;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -21,25 +16,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.costum.android.widget.LoadMoreListView;
 import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
+
+
 
 public class inside_listview extends ListActivity{
 private LoadMoreListView myLoadMoreListView;
@@ -184,7 +172,8 @@ private boolean isMoreVideos;
 			((LoadMoreListView) getListView()).onLoadMoreComplete();
 			
 			if (!isMoreVideos) {
-				((LoadMoreListView) getListView()).onNoMoreItems();
+				//((LoadMoreListView) getListView()).onNoMoreItems();
+				
 				myLoadMoreListView.setOnLoadMoreListener(null);
 			}
 

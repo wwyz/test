@@ -47,8 +47,8 @@ public class YoutubeFeed
             //System.out.println("Length: "+ playlist.length());
             
             for(int i=0;i<playlist.length();i++){
-                //get a video in the playlist            // 豁､譌ｶ霑俶悴隸ｻ蜿紋ｻｻ菴彬son譁�悽�檎峩謗･隸ｻ蜿門ｰｱ譏ｯ荳�ｸｪJSONObject蟇ｹ雎｡縲� 
-                // 螯よ棡豁､譌ｶ逧�ｯｻ蜿紋ｽ咲ｽｮ蝨ｨ"name" : 莠�ｼ碁ぅ荵�extValue蟆ｱ譏ｯ"yuanzhifei89"��tring�� 
+                //get a video in the playlist            // 璞侊饯璀岋蕉闇戜慷鎮撮毟锝昏溈绱嬶交锝昏彺褰瑂on璀侊拷鎮斤拷妾庡畅璎楋渐闅革交铚块杸锝帮奖璀忥蒋鑽筹拷锝革姜JSONObject锜囷焦闆庯健绺诧拷 
+                // 铻倛妫¤眮锝よ瓕锝堕�锟斤蒋锝昏溈绱嬶浇鍜诧浇锝潹锝�name" : 鑾狅拷锝肩銇呰嵉锟絜xtValue锜嗭奖璀忥蒋"yuanzhifei89"锟斤拷tring锟斤拷 
                 JSONObject oneVideo = playlist.getJSONObject(i);
                 //get the title of this video
                 String videoTitle = oneVideo.getJSONObject("title").getString("$t");
@@ -56,14 +56,18 @@ public class YoutubeFeed
                 String videoId = videoLink.substring(26, videoLink.indexOf("?"));
                 String videoDesc = oneVideo.getJSONObject("media$group").getJSONObject("media$description").getString("$t");
                 String thumbUrl = oneVideo.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url");
-                System.out.println(thumbUrl);
-                System.out.println(videoDesc);
+                String updateTime = oneVideo.getJSONObject("updated").getString("$t");
+                String author = oneVideo.getJSONArray("author").getJSONObject(0).getJSONObject("name").getString("$t");
+                //System.out.println(thumbUrl);
+                //System.out.println(videoDesc);
                 //store title and link
                 Video video = new Video();
                 video.setTitle(videoTitle);
                 video.setVideoId(videoId);
                 video.setThumbnailUrl(thumbUrl);
                 video.setVideoDesc(videoDesc);
+                video.setUpdateTime(updateTime);
+                video.setAuthor(author);
                 //System.out.println(video.getTitle());
                 //push it to the list
                 videos.add(video);
@@ -78,7 +82,64 @@ public class YoutubeFeed
             //System.out.println("Result: "+result);
 
         } catch (JSONException ex) {  
-            // 蠑ょｸｸ螟�炊莉｣遐� 
+            // 锠戙倗锝革礁铻燂拷鐐婅帀锝ｉ亹锟�
+            ex.printStackTrace();
+        }  
+        
+        
+        return videos;      
+    }
+    
+    public ArrayList<Video> getVideoPlaylist2(){
+        ArrayList<Video> videos = new ArrayList<Video>();
+        
+        try {
+
+            //get title of the playlist
+            String plTitle = feed.getJSONObject("title").getString("$t");
+            //System.out.println(plTitle);
+            //get the playlist
+            JSONArray playlist = feed.getJSONArray("entry");
+            //System.out.println("Length: "+ playlist.length());
+            
+            for(int i=0;i<playlist.length();i++){
+                //get a video in the playlist            
+                JSONObject oneVideo = playlist.getJSONObject(i);
+                //get the title of this video
+                String videoTitle = oneVideo.getJSONObject("title").getString("$t");
+                String videoLink = oneVideo.getJSONObject("content").getString("src");
+                String videoId = videoLink.substring(26, videoLink.indexOf("?"));
+                String author = oneVideo.getJSONArray("author").getJSONObject(0).getJSONObject("name").getString("$t");
+                //String videoDesc = oneVideo.getJSONObject("media$group").getJSONObject("media$description").getString("$t");
+                String videoDesc = oneVideo.getJSONObject("summary").getString("$t");
+                String thumbUrl = oneVideo.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url");
+                String updateTime = oneVideo.getJSONObject("updated").getString("$t");
+                //System.out.println(thumbUrl);
+               // System.out.println(videoDesc);
+                //store title and link
+                Video video = new Video();
+                video.setTitle(videoTitle);
+                video.setVideoId(videoId);
+                video.setThumbnailUrl(thumbUrl);
+                video.setAuthor(author);
+                video.setPlaylistUrl(videoLink + "&start-index=1&max-results=10&alt=json");
+                video.setVideoDesc(videoDesc);
+                video.setUpdateTime(updateTime);
+                //System.out.println(video.getTitle());
+                //push it to the list
+                videos.add(video);
+                //System.out.println(videoTitle+"***"+videoLink);
+                
+                
+            }
+            
+            
+            //check if there are more videos
+            //String result = getNextApi();
+            //System.out.println("Result: "+result);
+
+        } catch (JSONException ex) {  
+            // 锠戙倗锝革礁铻燂拷鐐婅帀锝ｉ亹锟�
             ex.printStackTrace();
         }  
         
@@ -101,6 +162,7 @@ public class YoutubeFeed
         return null;
         
     }
+    
 
 
 

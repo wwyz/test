@@ -16,12 +16,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.costum.android.widget.LoadMoreListView;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.support.v4.app.ListFragment;
@@ -32,28 +35,41 @@ import android.view.ViewGroup;
 public class Youtube extends ListFragment {
   
 	static ArrayList<String> MOBILE_OS;
-	
+	private ArrayList<String> titles;
+	private ArrayList<Video> videolist;
+	private String q2 = "https://gdata.youtube.com/feeds/api/users/dotacinema/playlists?v=2&alt=json";
+	private String q3 = "https://gdata.youtube.com/feeds/api/users/noobfromua/playlists?v=2&alt=json";
+
 	private String query = "https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=10&amp&v=2&orderby=published&alt=json";
+	private VideoArrayAdapter vaa;
 	Context appContext;
 	ProgressDialog pd;
 	
+	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
-		String[] Options = new String[] { 
-				"TopFails", "Top10","Danteng", "DotaCinema" };
+		
+		String[] Options = new String[] {};
+		titles = new ArrayList<String>();
+		videolist  = new ArrayList<Video>();
 		
 		MOBILE_OS = new ArrayList<String>(Arrays.asList(Options));
 		
 		View view = inflater.inflate(android.R.layout.list_content, null);
 	    ListView ls = (ListView) view.findViewById(android.R.id.list);
-
-	    ls.setAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
-	    
+	    vaa = new VideoArrayAdapter(inflater.getContext(), titles, videolist);
+	    //ls.setAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
+	    ls.setAdapter(vaa);
 	    ls.setDivider(null);
 	    ls.setDividerHeight(0);
 
 		appContext = inflater.getContext();
+		pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
+		
+		new YoutubeGetRequest2().execute(q2);
+		new YoutubeGetRequest2().execute(q3);
 		
 		return view;
 	}
@@ -62,20 +78,15 @@ public class Youtube extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
  
 		//get selected items
-		String selectedValue = (String) getListAdapter().getItem(position);
+		//String selectedValue = (String) getListAdapter().getItem(position);
 		//Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
 		pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
 
 
-		if(selectedValue=="DotaCinema"){
-			
-						new YoutubeGetRequest().execute(query);		
-		}else{
 
-			new YoutubeGetRequest().execute(query);		
-	
 			
-		}
+		new YoutubeGetRequest().execute(videolist.get(position).getPlaylistUrl());		
+		
 
 	
 	}
@@ -182,6 +193,93 @@ public class Youtube extends ListFragment {
 			}
 	        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	        appContext.startActivity(i);
+
+
+	    }
+	    
+	    private void processJSON(String json) throws JSONException{
+	        JSONTokener jsonParser = new JSONTokener(json);  
+	        // 雎�ｽ､隴鯉ｽｶ髴台ｿｶ謔ｴ髫ｸ�ｻ陷ｿ邏具ｽｻ�ｻ闖ｴ蠖ｬson隴�ｿｽ謔ｽ�ｽ讙主ｳｩ隰暦ｽ･髫ｸ�ｻ陷ｿ髢�ｽｰ�ｱ隴擾ｽｯ闕ｳ�ｽ�ｸ�ｪJSONObject陝�ｽｹ髮趣ｽ｡邵ｲ�ｽ 
+	        // 陞ｯ繧域｣｡雎�ｽ､隴鯉ｽｶ騾ｧ�ｽ�ｯ�ｻ陷ｿ邏具ｽｽ蜥ｲ�ｽ�ｮ陜ｨ�ｨ"name" : 闔�ｿｽ�ｼ遒√≦闕ｵ�ｽextValue陝�ｽｱ隴擾ｽｯ"yuanzhifei89"�ｽ�ｽtring�ｽ�ｽ 
+	        JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
+	        // 隰暦ｽ･闕ｳ蛹ｺ謫る��ｽ�ｰ�ｱ隴擾ｽｯJSON陝�ｽｹ髮趣ｽ｡騾ｧ�ｽ譯�抄諛会ｽｺ�ｽ 
+	        this.feed = wholeJson.getJSONObject("feed");
+	        
+	        
+	    }
+	    
+	   
+	}
+	
+	private class YoutubeGetRequest2 extends AsyncTask<String, String, String>{
+	    private JSONObject feed;
+	    public YoutubeGetRequest2(){
+	        ;
+	    }
+	    @Override
+	    protected String doInBackground(String... uri) {
+	    	
+	    
+	        HttpClient httpclient = new DefaultHttpClient();
+	        HttpResponse response;
+	        String responseString = null;
+	        try {
+	            response = httpclient.execute(new HttpGet(uri[0]));
+	            StatusLine statusLine = response.getStatusLine();
+	            if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+	                ByteArrayOutputStream out = new ByteArrayOutputStream();
+	                response.getEntity().writeTo(out);
+	                out.close();
+	                responseString = out.toString();
+	            } else{
+	                //Closes the connection.
+	                response.getEntity().getContent().close();
+	                throw new IOException(statusLine.getReasonPhrase());
+	            }
+	        } catch (ClientProtocolException e) {
+	            //TODO Handle problems..
+	        } catch (IOException e) {
+	            //TODO Handle problems..
+	        }
+	        return responseString;
+	    }
+
+	    @Override
+	    protected void onPostExecute(String result) {
+	        //Do anything with response..
+	        //System.out.println(result);
+	    	YoutubeFeed ytf = null;
+	        try
+	        {   
+	            ytf = new YoutubeFeed(result);
+	        } catch (JSONException e)
+	        {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        
+	        
+	        
+	        List<Video> newVideos = ytf.getVideoPlaylist2();
+	        for(Video v:newVideos){
+//	            System.out.println(v.getVideoId());
+	        	titles.add(v.getTitle());
+	        	//videos.add(v.getVideoId());
+	        	videolist.add(v);
+	        }
+	        
+//	        for(String s:titles){
+//	        	System.out.println(s);
+//	        }
+
+//	        ListFragment lFrag = (ListFragment) getFragmentManager().findFragmentById(android.R.id.list);
+//	        BaseAdapter adapter = (BaseAdapter) lFrag.getListAdapter();
+//	        adapter.notifyDataSetChanged();
+	        vaa.notifyDataSetChanged();
+			
+	        pd.dismiss();
+
+			
 
 
 	    }

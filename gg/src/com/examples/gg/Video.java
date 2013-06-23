@@ -13,7 +13,34 @@ public class Video implements Parcelable
     public String videoId;
     public String videoDesc;
     public String thumbnailUrl;
+    public String author;
+    public String playlistUrl;
+    public String updateTime;
     
+	public String getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getPlaylistUrl() {
+		return playlistUrl;
+	}
+
+	public void setPlaylistUrl(String playlistUrl) {
+		this.playlistUrl = playlistUrl;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 	public Video(){
 
     }
