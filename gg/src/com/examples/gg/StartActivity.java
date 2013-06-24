@@ -1,16 +1,13 @@
 package com.examples.gg;
 
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.MediaController;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 public class StartActivity extends Activity {
 	ImageButton youtube;
@@ -48,8 +45,9 @@ public class StartActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(StartActivity.this,"Youtube is selected", Toast.LENGTH_SHORT).show();
-				   Intent youtubeIntent = new Intent(StartActivity.this,TabActivity.class);
-				   startActivity(youtubeIntent);
+				   //Intent youtubeIntent = new Intent(StartActivity.this,TabActivity.class);
+				Intent youtubeIntent = new Intent(StartActivity.this,SampleTabsStyled.class);
+				startActivity(youtubeIntent);
 
 				   
 			}
@@ -63,7 +61,7 @@ public class StartActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(StartActivity.this,"Youku is selected", Toast.LENGTH_SHORT).show();
-				   Intent youtubeIntent = new Intent(StartActivity.this,TabActivity.class);
+				   Intent youtubeIntent = new Intent(StartActivity.this,Swipe.class);
 				   startActivity(youtubeIntent);
 		
 			}

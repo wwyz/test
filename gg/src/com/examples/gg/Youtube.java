@@ -16,31 +16,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.costum.android.widget.LoadMoreListView;
-
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
  
 public class Youtube extends ListFragment {
   
+	public static int isLoaded = 0;
 	static ArrayList<String> MOBILE_OS;
 	private ArrayList<String> titles;
 	private ArrayList<Video> videolist;
 	private String q2 = "https://gdata.youtube.com/feeds/api/users/dotacinema/playlists?v=2&alt=json";
 	private String q3 = "https://gdata.youtube.com/feeds/api/users/noobfromua/playlists?v=2&alt=json";
 
-	private String query = "https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=10&amp&v=2&orderby=published&alt=json";
+	//private String query = "https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=10&amp&v=2&orderby=published&alt=json";
 	private VideoArrayAdapter vaa;
 	Context appContext;
 	ProgressDialog pd;
@@ -276,7 +272,7 @@ public class Youtube extends ListFragment {
 //	        BaseAdapter adapter = (BaseAdapter) lFrag.getListAdapter();
 //	        adapter.notifyDataSetChanged();
 	        vaa.notifyDataSetChanged();
-			
+	        isLoaded = 1;
 	        pd.dismiss();
 
 			
