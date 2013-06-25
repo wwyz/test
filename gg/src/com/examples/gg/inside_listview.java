@@ -172,7 +172,7 @@ private boolean isMoreVideos;
 			((LoadMoreListView) getListView()).onLoadMoreComplete();
 			
 			if (!isMoreVideos) {
-				//((LoadMoreListView) getListView()).onNoMoreItems();
+				((LoadMoreListView) getListView()).onNoMoreItems();
 				
 				myLoadMoreListView.setOnLoadMoreListener(null);
 			}

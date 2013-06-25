@@ -166,9 +166,15 @@ public class LoadMoreListView extends ListView implements OnScrollListener {
 	 * Notify the loading more operation has finished
 	 */
 	public void onLoadMoreComplete() {
+		Log.d(TAG, "LoadFinished");
 		mIsLoadingMore = false;
+//		mProgressBarLoadMore.setVisibility(View.GONE);
 	}
 
+	public void onNoMoreItems() {
+		mProgressBarLoadMore.setVisibility(View.GONE);
+	}
+	
 	/**
 	 * Interface definition for a callback to be invoked when list reaches the
 	 * last item (the user load more items in the list)
