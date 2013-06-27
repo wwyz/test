@@ -14,7 +14,16 @@ public class Video implements Parcelable
     public String videoDesc;
     public String thumbnailUrl;
     public String author;
-    public String playlistUrl;
+    public String uploaderThumUrl;
+    public String getUploaderThumUrl() {
+		return uploaderThumUrl;
+	}
+
+	public void setUploaderThumUrl(String uploaderThumUrl) {
+		this.uploaderThumUrl = uploaderThumUrl;
+	}
+
+	public String playlistUrl;
     public String updateTime;
     
 	public String getUpdateTime() {

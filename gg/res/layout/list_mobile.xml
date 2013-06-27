@@ -4,18 +4,22 @@
     android:layout_height="fill_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    android:padding="5dp" >
+    android:padding="5dp">
+    
+    
+    
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/uploaderImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="#ffffff"
-        android:src="@drawable/top10" />
+        android:background="@drawable/customshape2" />
 
     <TextView
         android:id="@+id/Uploader"
@@ -24,7 +28,7 @@
         android:layout_weight="3"
         android:layout_gravity="bottom"
         android:text="Uploader"
-        android:background="#ffffff"
+        android:background="@drawable/customshape1"
         android:ems="10" >
 
         <requestFocus />
@@ -35,7 +39,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="#ccccdd"
+    android:background="@drawable/customshape3"
     android:minHeight="125dp"
     android:orientation="horizontal" >
 

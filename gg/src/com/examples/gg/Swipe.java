@@ -82,11 +82,23 @@ public class Swipe extends FragmentActivity {
 //			return fragment;
 			switch (position) {
 			case 0:
-				return new Youtube();
+				Fragment fragment3 = new DummySectionFragment();
+				Bundle args3 = new Bundle();
+				args3.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment3.setArguments(args3);
+				return fragment3;
 			case 1:
-				return new Youtube();
+				Fragment fragment = new DummySectionFragment();
+				Bundle args = new Bundle();
+				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
 			case 2:
-				return new Youtube();
+				Fragment fragment2 = new DummySectionFragment();
+				Bundle args2 = new Bundle();
+				args2.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment2.setArguments(args2);
+				return fragment2;
 			}
 			//System.out.println("Position: " + position);
 			return null;

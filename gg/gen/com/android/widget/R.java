@@ -15,17 +15,17 @@ public final class R {
 	}
 	public static final class drawable {
 		public static final int costum_progress_bar = 0x7f020004;
-		public static final int ic_launcher = 0x7f020012;
-		public static final int ic_pulltorefresh_arrow = 0x7f020013;
+		public static final int ic_launcher = 0x7f020015;
+		public static final int ic_pulltorefresh_arrow = 0x7f020016;
 	}
 	public static final class id {
 		public static final int load_more_footer = 0x7f040011;
 		public static final int load_more_progressBar = 0x7f040013;
-		public static final int pull_to_refresh_header = 0x7f04001d;
-		public static final int pull_to_refresh_image = 0x7f04001f;
-		public static final int pull_to_refresh_progress = 0x7f04001e;
-		public static final int pull_to_refresh_text = 0x7f040020;
-		public static final int pull_to_refresh_updated_at = 0x7f040021;
+		public static final int pull_to_refresh_header = 0x7f04001e;
+		public static final int pull_to_refresh_image = 0x7f040020;
+		public static final int pull_to_refresh_progress = 0x7f04001f;
+		public static final int pull_to_refresh_text = 0x7f040021;
+		public static final int pull_to_refresh_updated_at = 0x7f040022;
 		public static final int top_line = 0x7f040012;
 	}
 	public static final class layout {

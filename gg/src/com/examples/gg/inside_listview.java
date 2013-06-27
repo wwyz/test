@@ -41,6 +41,8 @@ private boolean isMoreVideos;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		
+		
 		setContentView(R.layout.loadmore_list);
 		
 		isMoreVideos = true;
@@ -74,6 +76,7 @@ private boolean isMoreVideos;
 		}
 		
 		myLoadMoreListView =  (LoadMoreListView) this.getListView();
+		myLoadMoreListView.setDivider(null);
 		
 		myLoadMoreListView
 		.setOnLoadMoreListener(new OnLoadMoreListener() {

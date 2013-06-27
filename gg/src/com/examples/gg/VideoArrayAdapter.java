@@ -35,6 +35,7 @@ public class VideoArrayAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(R.layout.list_mobile, parent, false);
 		TextView titleView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
+		ImageView uploaderView = (ImageView) rowView.findViewById(R.id.uploaderImage);
 		titleView.setText(values.get(position));
 		
 		//set the description
@@ -52,7 +53,7 @@ public class VideoArrayAdapter extends ArrayAdapter<String> {
 		// Change icon based on name
 			
         new DownloadImage(videos.get(position).getThumbnailUrl()).execute(imageView);
-
+        new DownloadImage(videos.get(position).getUploaderThumUrl()).execute(uploaderView);
  
 		return rowView;
 	}

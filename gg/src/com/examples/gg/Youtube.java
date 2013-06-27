@@ -29,24 +29,26 @@ import android.widget.ListView;
  
 public class Youtube extends ListFragment {
   
-	public static int isLoaded = 0;
+	
 	static ArrayList<String> MOBILE_OS;
 	private ArrayList<String> titles;
 	private ArrayList<Video> videolist;
-	private String q2 = "https://gdata.youtube.com/feeds/api/users/dotacinema/playlists?v=2&alt=json";
-	private String q3 = "https://gdata.youtube.com/feeds/api/users/noobfromua/playlists?v=2&alt=json";
+	private String q2 = "https://gdata.youtube.com/feeds/api/users/dotacinema/playlists?v=2&max-results=50&alt=json";
+	private String q3 = "https://gdata.youtube.com/feeds/api/users/noobfromua/playlists?v=2&max-results=50&alt=json";
+	private VideoArrayAdapter vaa;
+	private String section;
 
 	//private String query = "https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=10&amp&v=2&orderby=published&alt=json";
-	private VideoArrayAdapter vaa;
+	
 	Context appContext;
 	ProgressDialog pd;
-	
 	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
-		
+		savedInstanceState = this.getArguments();
+		section = savedInstanceState.getString("SECTION");
 		String[] Options = new String[] {};
 		titles = new ArrayList<String>();
 		videolist  = new ArrayList<Video>();
@@ -54,19 +56,48 @@ public class Youtube extends ListFragment {
 		MOBILE_OS = new ArrayList<String>(Arrays.asList(Options));
 		
 		View view = inflater.inflate(android.R.layout.list_content, null);
+
 	    ListView ls = (ListView) view.findViewById(android.R.id.list);
 	    vaa = new VideoArrayAdapter(inflater.getContext(), titles, videolist);
 	    //ls.setAdapter(new MobileArrayAdapter(inflater.getContext(), MOBILE_OS));
+	    //we are in section which contains uploaders only
+	    
+	    if(section.equals("UPLOADER")){
+	    	titles.add("DotaCinema");
+	    	titles.add("noobfromua");
+	    	Video dotacinema = new Video();
+	    	dotacinema.setAuthor("DotaCinema");
+	    	dotacinema.setPlaylistUrl("http://gdata.youtube.com/feeds/api/users/dotacinema/uploads?start-index=1&max-results=10&v=2&alt=json");
+	    	dotacinema.setThumbnailUrl("https://i1.ytimg.com/i/NRQ-DWUXf4UVN9L31Y9f3Q/1.jpg?v=5067cf3b");
+	    	dotacinema.setTitle("Videos from DotaCinema");
+	    	dotacinema.setUploaderThumUrl("https://i1.ytimg.com/i/NRQ-DWUXf4UVN9L31Y9f3Q/1.jpg?v=5067cf3b");
+	    	
+	    	Video noobfromua = new Video();
+	    	noobfromua.setAuthor("noobfromua");
+	    	noobfromua.setPlaylistUrl("http://gdata.youtube.com/feeds/api/users/noobfromua/uploads?start-index=1&max-results=10&v=2&alt=json");
+	    	noobfromua.setThumbnailUrl("https://i1.ytimg.com/i/fsOfLvadg89Bx8Sv_6WERg/1.jpg?v=515d687f");
+	    	noobfromua.setTitle("Videos from noobfromua");
+	    	noobfromua.setUploaderThumUrl("https://i1.ytimg.com/i/fsOfLvadg89Bx8Sv_6WERg/1.jpg?v=515d687f");
+	    	
+	    	
+	    	videolist.add(dotacinema);
+	    	videolist.add(noobfromua);
+	    	
+	    }
+	    
+	    
+	    
 	    ls.setAdapter(vaa);
 	    ls.setDivider(null);
 	    ls.setDividerHeight(0);
 
 		appContext = inflater.getContext();
-		pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
+		//pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
 		
-		new YoutubeGetRequest2().execute(q2);
-		new YoutubeGetRequest2().execute(q3);
-		
+		if(section.equals("PLAYLIST")){
+			new YoutubeGetRequest2().execute(q2);
+			new YoutubeGetRequest2().execute(q3);
+		}
 		return view;
 	}
 	
@@ -259,9 +290,14 @@ public class Youtube extends ListFragment {
 	        List<Video> newVideos = ytf.getVideoPlaylist2();
 	        for(Video v:newVideos){
 //	            System.out.println(v.getVideoId());
-	        	titles.add(v.getTitle());
-	        	//videos.add(v.getVideoId());
-	        	videolist.add(v);
+	        	String theTitle = v.getTitle();
+	        	if((theTitle.toUpperCase().contains("DOTA") || theTitle.toUpperCase().contains("GAMEPLAY"))
+	        			&& !theTitle.toUpperCase().contains("ASSASSIN")){
+		        	titles.add(v.getTitle());
+		        	//videos.add(v.getVideoId());
+		        	
+		        	videolist.add(v);
+	        	}
 	        }
 	        
 //	        for(String s:titles){
@@ -272,9 +308,11 @@ public class Youtube extends ListFragment {
 //	        BaseAdapter adapter = (BaseAdapter) lFrag.getListAdapter();
 //	        adapter.notifyDataSetChanged();
 	        vaa.notifyDataSetChanged();
-	        isLoaded = 1;
-	        pd.dismiss();
+	        
+	        //pd.dismiss();
+	        
 
+	        //rl.setVisibility(View.GONE);
 			
 
 
@@ -282,10 +320,9 @@ public class Youtube extends ListFragment {
 	    
 	    private void processJSON(String json) throws JSONException{
 	        JSONTokener jsonParser = new JSONTokener(json);  
-	        // 雎�ｽ､隴鯉ｽｶ髴台ｿｶ謔ｴ髫ｸ�ｻ陷ｿ邏具ｽｻ�ｻ闖ｴ蠖ｬson隴�ｿｽ謔ｽ�ｽ讙主ｳｩ隰暦ｽ･髫ｸ�ｻ陷ｿ髢�ｽｰ�ｱ隴擾ｽｯ闕ｳ�ｽ�ｸ�ｪJSONObject陝�ｽｹ髮趣ｽ｡邵ｲ�ｽ 
-	        // 陞ｯ繧域｣｡雎�ｽ､隴鯉ｽｶ騾ｧ�ｽ�ｯ�ｻ陷ｿ邏具ｽｽ蜥ｲ�ｽ�ｮ陜ｨ�ｨ"name" : 闔�ｿｽ�ｼ遒√≦闕ｵ�ｽextValue陝�ｽｱ隴擾ｽｯ"yuanzhifei89"�ｽ�ｽtring�ｽ�ｽ 
+
 	        JSONObject wholeJson = (JSONObject) jsonParser.nextValue();  
-	        // 隰暦ｽ･闕ｳ蛹ｺ謫る��ｽ�ｰ�ｱ隴擾ｽｯJSON陝�ｽｹ髮趣ｽ｡騾ｧ�ｽ譯�抄諛会ｽｺ�ｽ 
+
 	        this.feed = wholeJson.getJSONObject("feed");
 	        
 	        

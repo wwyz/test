@@ -47,13 +47,12 @@ public class YoutubeFeed
             //System.out.println("Length: "+ playlist.length());
             
             for(int i=0;i<playlist.length();i++){
-                //get a video in the playlist            // 璞侊饯璀岋蕉闇戜慷鎮撮毟锝昏溈绱嬶交锝昏彺褰瑂on璀侊拷鎮斤拷妾庡畅璎楋渐闅革交铚块杸锝帮奖璀忥蒋鑽筹拷锝革姜JSONObject锜囷焦闆庯健绺诧拷 
-                // 铻倛妫¤眮锝よ瓕锝堕�锟斤蒋锝昏溈绱嬶浇鍜诧浇锝潹锝�name" : 鑾狅拷锝肩銇呰嵉锟絜xtValue锜嗭奖璀忥蒋"yuanzhifei89"锟斤拷tring锟斤拷 
+                //get a video in the playlist           
                 JSONObject oneVideo = playlist.getJSONObject(i);
                 //get the title of this video
                 String videoTitle = oneVideo.getJSONObject("title").getString("$t");
                 String videoLink = oneVideo.getJSONObject("content").getString("src");
-                String videoId = videoLink.substring(26, videoLink.indexOf("?"));
+                String videoId = videoLink.substring(videoLink.indexOf("/v/")+3, videoLink.indexOf("?"));
                 String videoDesc = oneVideo.getJSONObject("media$group").getJSONObject("media$description").getString("$t");
                 String thumbUrl = oneVideo.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url");
                 String updateTime = oneVideo.getJSONObject("updated").getString("$t");
@@ -67,7 +66,7 @@ public class YoutubeFeed
                 video.setThumbnailUrl(thumbUrl);
                 video.setVideoDesc(videoDesc);
                 video.setUpdateTime(updateTime);
-                video.setAuthor(author);
+                //video.setAuthor(author);
                 //System.out.println(video.getTitle());
                 //push it to the list
                 videos.add(video);
@@ -82,7 +81,7 @@ public class YoutubeFeed
             //System.out.println("Result: "+result);
 
         } catch (JSONException ex) {  
-            // 锠戙倗锝革礁铻燂拷鐐婅帀锝ｉ亹锟�
+            
             ex.printStackTrace();
         }  
         
@@ -102,22 +101,31 @@ public class YoutubeFeed
             JSONArray playlist = feed.getJSONArray("entry");
             //System.out.println("Length: "+ playlist.length());
             
+            
             for(int i=0;i<playlist.length();i++){
+            	Video video = new Video();
                 //get a video in the playlist            
                 JSONObject oneVideo = playlist.getJSONObject(i);
                 //get the title of this video
                 String videoTitle = oneVideo.getJSONObject("title").getString("$t");
                 String videoLink = oneVideo.getJSONObject("content").getString("src");
-                String videoId = videoLink.substring(26, videoLink.indexOf("?"));
+                String videoId = videoLink.substring(videoLink.indexOf("/v/")+3, videoLink.indexOf("?"));
                 String author = oneVideo.getJSONArray("author").getJSONObject(0).getJSONObject("name").getString("$t");
                 //String videoDesc = oneVideo.getJSONObject("media$group").getJSONObject("media$description").getString("$t");
                 String videoDesc = oneVideo.getJSONObject("summary").getString("$t");
                 String thumbUrl = oneVideo.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url");
                 String updateTime = oneVideo.getJSONObject("updated").getString("$t");
+                
+                if(author.toUpperCase().equals("DOTACINEMA")){
+                	video.setUploaderThumUrl("https://i1.ytimg.com/i/NRQ-DWUXf4UVN9L31Y9f3Q/1.jpg?v=5067cf3b");
+                }else if(author.toUpperCase().equals("NOOBFROMUA")){
+                	video.setUploaderThumUrl("https://i1.ytimg.com/i/fsOfLvadg89Bx8Sv_6WERg/1.jpg?v=515d687f");
+                }
+                
                 //System.out.println(thumbUrl);
                // System.out.println(videoDesc);
                 //store title and link
-                Video video = new Video();
+                
                 video.setTitle(videoTitle);
                 video.setVideoId(videoId);
                 video.setThumbnailUrl(thumbUrl);
