@@ -208,6 +208,7 @@ public class Youtube extends ListFragment {
 	        
 	        pd.dismiss();
 	        Intent i = new Intent(appContext, inside_listview.class);
+
             i.putParcelableArrayListExtra ("videolist", videos);
 	        
 //	        i.putExtra("titles", mStringArray);

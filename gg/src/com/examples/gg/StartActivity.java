@@ -46,7 +46,7 @@ public class StartActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(StartActivity.this,"Youtube is selected", Toast.LENGTH_SHORT).show();
 				   //Intent youtubeIntent = new Intent(StartActivity.this,TabActivity.class);
-				Intent youtubeIntent = new Intent(StartActivity.this,SampleTabsStyled.class);
+				Intent youtubeIntent = new Intent(StartActivity.this,SideMenuActivity.class);
 				startActivity(youtubeIntent);
 
 				   
