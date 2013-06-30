@@ -141,7 +141,7 @@ public class SideMenuActivity extends SherlockFragmentActivity {
 	}
 
 	// The click listener for ListView in the navigation drawer
-	private class DrawerItemClickListener implements
+	public class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,

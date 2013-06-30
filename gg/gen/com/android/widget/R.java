@@ -30,7 +30,7 @@ public final class R {
 	}
 	public static final class layout {
 		public static final int load_more_footer = 0x7f03001b;
-		public static final int pull_to_refresh_header = 0x7f030022;
+		public static final int pull_to_refresh_header = 0x7f030023;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f09000b;

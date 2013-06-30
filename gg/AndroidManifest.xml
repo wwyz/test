@@ -80,9 +80,11 @@
         </activity>
             
         <activity
-            android:name="com.examples.gg.InsidePlaylistActivity"
+            android:name="com.examples.gg.Inside_activity"
             android:label="@string/inside_playlist" >
         </activity>
+
+         
     </application>
 
 </manifest>

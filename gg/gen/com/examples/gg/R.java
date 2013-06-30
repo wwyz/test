@@ -1305,20 +1305,21 @@ containing a value of this type.
         public static final int list_mobile=0x7f03001a;
         public static final int load_more_footer=0x7f03001b;
         public static final int loadmore_list=0x7f03001c;
-        public static final int mobile=0x7f03001d;
-        public static final int navigation_1=0x7f03001e;
-        public static final int navigation_2=0x7f03001f;
-        public static final int navigation_3=0x7f030020;
-        public static final int open=0x7f030021;
-        public static final int pull_to_refresh_header=0x7f030022;
-        public static final int sherlock_spinner_dropdown_item=0x7f030023;
-        public static final int sherlock_spinner_item=0x7f030024;
-        public static final int simple_tabs=0x7f030025;
-        public static final int swipe=0x7f030026;
-        public static final int tablayout=0x7f030027;
-        public static final int videoplayer=0x7f030028;
-        public static final int viewgroup=0x7f030029;
-        public static final int youku=0x7f03002a;
+        public static final int loadmore_list2=0x7f03001d;
+        public static final int mobile=0x7f03001e;
+        public static final int navigation_1=0x7f03001f;
+        public static final int navigation_2=0x7f030020;
+        public static final int navigation_3=0x7f030021;
+        public static final int open=0x7f030022;
+        public static final int pull_to_refresh_header=0x7f030023;
+        public static final int sherlock_spinner_dropdown_item=0x7f030024;
+        public static final int sherlock_spinner_item=0x7f030025;
+        public static final int simple_tabs=0x7f030026;
+        public static final int swipe=0x7f030027;
+        public static final int tablayout=0x7f030028;
+        public static final int videoplayer=0x7f030029;
+        public static final int viewgroup=0x7f03002a;
+        public static final int youku=0x7f03002b;
     }
     public static final class menu {
         public static final int activity_main=0x7f0b0000;

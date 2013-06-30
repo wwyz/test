@@ -130,7 +130,7 @@ public class YoutubeFeed
                 video.setVideoId(videoId);
                 video.setThumbnailUrl(thumbUrl);
                 video.setAuthor(author);
-                video.setPlaylistUrl(videoLink + "&start-index=1&max-results=10&alt=json");
+                video.setPlaylistUrl(videoLink + "&start-index=1&max-results=10&orderby=published&alt=json");
                 video.setVideoDesc(videoDesc);
                 video.setUpdateTime(updateTime);
                 //System.out.println(video.getTitle());
@@ -167,6 +167,7 @@ public class YoutubeFeed
             }
         }
         
+       
         return null;
         
     }
