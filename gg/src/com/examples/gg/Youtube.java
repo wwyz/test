@@ -16,18 +16,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.actionbarsherlock.app.SherlockListFragment;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
  
-public class Youtube extends ListFragment {
+public class Youtube extends SherlockListFragment {
   
 	
 	static ArrayList<String> MOBILE_OS;
@@ -207,20 +211,29 @@ public class Youtube extends ListFragment {
 	        }
 	        
 	        pd.dismiss();
-	        //Intent i = new Intent(appContext, inside_listview.class);
-	        Intent i = new Intent(appContext, Inside_activity.class);
-            i.putParcelableArrayListExtra ("videolist", videos);
+			FragmentTransaction ft = getFragmentManager().beginTransaction();
+		// Locate Position
+
+//==========================================================================================================
+			getSherlockActivity().getSupportActionBar().setTitle("Videolist");
+			Fragment videolist = new videolist();
+			
+	        Bundle bundle = new Bundle();
+	        bundle.putParcelableArrayList("videolist", videos);
 	        
-//	        i.putExtra("titles", mStringArray);
-//	        i.putExtra("videos",  idsArray);
 	        try {
-				i.putExtra("query", ytf.getNextApi());
+	        	bundle.putString("query", ytf.getNextApi());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	        appContext.startActivity(i);
+	        
+	        videolist.setArguments(bundle);
+			
+			ft.replace(R.id.content_frame, videolist);
+			ft.commit();
+			
+//=========================================================================================================
 
 
 	    }

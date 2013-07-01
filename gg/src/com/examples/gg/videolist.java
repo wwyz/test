@@ -19,17 +19,20 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.SherlockListFragment;
 import com.costum.android.widget.LoadMoreListView;
 import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
 
 
 
-public class inside_listview extends ListActivity{
+public class videolist extends SherlockListFragment{
 private LoadMoreListView myLoadMoreListView;
 private ArrayList<String> titles;
 private ArrayList<String> videos;
@@ -37,24 +40,33 @@ private ArrayList<String> thumbList;
 private ArrayList<Video> videolist;
 private String query;
 private boolean isMoreVideos;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+//		super.onCreate(savedInstanceState);
 		
+		View view = inflater.inflate(R.layout.loadmore_list, null);
 		
+//		setContentView(R.layout.loadmore_list);
 		
-		setContentView(R.layout.loadmore_list);
-		
-		isMoreVideos = true;
-		Intent intent = getIntent();
+
+//		Intent intent = getIntent();
 //		String set = intent.getStringExtra("set");
+		savedInstanceState = this.getArguments();
 		
 		titles = new ArrayList<String>();
 		videos = new ArrayList<String>();
 		thumbList = new ArrayList<String>();
 		
-		videolist = intent.getParcelableArrayListExtra ("videolist");
-		query = intent.getStringExtra("query");
+		videolist = savedInstanceState.getParcelableArrayList ("videolist");
+		query = savedInstanceState.getString("query");
+		
+		
+		//check whether there are more videos in the playlist
+		if(query == null){
+			isMoreVideos = false;
+		}else isMoreVideos = true;
+		
 		
         for(Video v:videolist){
         	System.out.println("Title: " + v.getTitle());
@@ -70,14 +82,24 @@ private boolean isMoreVideos;
 			System.out.println("ID: "+ v);
 		}
 
-		
 		if(titles!=null){
-			setListAdapter(new VideoArrayAdapter(this, titles, videolist));
+			setListAdapter(new VideoArrayAdapter(inflater.getContext(), titles, videolist));
 		}
 		
+		return view;
+	
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+	    // TODO Auto-generated method stub
+	    super.onActivityCreated(savedInstanceState);
+	    
 		myLoadMoreListView =  (LoadMoreListView) this.getListView();
 		myLoadMoreListView.setDivider(null);
 		
+		
+		if (isMoreVideos)
 		myLoadMoreListView
 		.setOnLoadMoreListener(new OnLoadMoreListener() {
 			public void onLoadMore() {
@@ -88,17 +110,19 @@ private boolean isMoreVideos;
 				}
 			}
 		});
-	
+		
+		else myLoadMoreListView.setOnLoadMoreListener(null);
 	}
+
 	
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
+	public void onListItemClick(ListView l, View v, int position, long id) {
  
 		//get selected items
 		String selectedValue = (String) getListAdapter().getItem(position);
-		Toast.makeText(this, videos.get(position), Toast.LENGTH_SHORT).show();
+		Toast.makeText(this.getSherlockActivity(), videos.get(position), Toast.LENGTH_SHORT).show();
 		
-        Intent i = new Intent(inside_listview.this, VideoPlayer.class);
+        Intent i = new Intent(this.getSherlockActivity(), VideoPlayer.class);
         i.putExtra("video", videolist.get(position));
         startActivity(i);
 		
