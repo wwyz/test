@@ -41,6 +41,7 @@ private ArrayList<Video> videolist;
 private String query;
 private boolean isMoreVideos;
 
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);
@@ -86,6 +87,11 @@ private boolean isMoreVideos;
 			setListAdapter(new VideoArrayAdapter(inflater.getContext(), titles, videolist));
 		}
 		
+					
+		//this.getSherlockActivity().findViewById(R.id.content_frame).setVisibility(View.VISIBLE);
+		
+		//loading done
+		this.getSherlockActivity().findViewById(R.id.fullscreen_loading_indicator).setVisibility(View.GONE);
 		return view;
 	
 	}

@@ -16,20 +16,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.actionbarsherlock.app.SherlockListFragment;
-
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.app.SherlockListFragment;
  
 public class Youtube extends SherlockListFragment {
   
@@ -41,16 +39,15 @@ public class Youtube extends SherlockListFragment {
 	private String q3 = "https://gdata.youtube.com/feeds/api/users/noobfromua/playlists?v=2&max-results=50&alt=json";
 	private VideoArrayAdapter vaa;
 	private String section;
+	private SherlockFragmentActivity sfa;
 
-	//private String query = "https://gdata.youtube.com/feeds/api/playlists/PL981BABEC1803C00D?start-index=1&amp&max-results=10&amp&v=2&orderby=published&alt=json";
-	
-	Context appContext;
-	ProgressDialog pd;
 	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
+		
+		sfa = this.getSherlockActivity();
 		savedInstanceState = this.getArguments();
 		section = savedInstanceState.getString("SECTION");
 		String[] Options = new String[] {};
@@ -95,10 +92,9 @@ public class Youtube extends SherlockListFragment {
 	    ls.setDivider(null);
 	    ls.setDividerHeight(0);
 
-		appContext = inflater.getContext();
-		//pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
-		
 		if(section.equals("PLAYLIST")){
+			//sfa.findViewById(R.id.content_frame).setVisibility(View.GONE);
+			sfa.findViewById(R.id.fullscreen_loading_indicator).setVisibility(View.VISIBLE);
 			new YoutubeGetRequest2().execute(q2);
 			new YoutubeGetRequest2().execute(q3);
 		}
@@ -111,11 +107,14 @@ public class Youtube extends SherlockListFragment {
 		//get selected items
 		//String selectedValue = (String) getListAdapter().getItem(position);
 		//Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
-		pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
+		//pd = ProgressDialog.show(appContext,"Loading","Dota spark is working hard to load videos for you!",true,false,null);
 
 
 
-			
+		//sfa.findViewById(R.id.content_frame).setVisibility(View.GONE);
+		
+		//start loading
+		sfa.findViewById(R.id.fullscreen_loading_indicator).setVisibility(View.VISIBLE);
 		new YoutubeGetRequest().execute(videolist.get(position).getPlaylistUrl());		
 		
 
@@ -210,7 +209,7 @@ public class Youtube extends SherlockListFragment {
 	            e.printStackTrace();
 	        }
 	        
-	        pd.dismiss();
+	        //pd.dismiss();
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
 		// Locate Position
 
@@ -323,6 +322,11 @@ public class Youtube extends SherlockListFragment {
 //	        adapter.notifyDataSetChanged();
 	        vaa.notifyDataSetChanged();
 	        
+	        //Make the loading view invisible
+	        sfa.findViewById(R.id.fullscreen_loading_indicator).setVisibility(View.GONE);
+	        
+	        //show content view
+	        //sfa.findViewById(R.id.content_frame).setVisibility(View.VISIBLE);
 	        //pd.dismiss();
 	        
 
